@@ -1,0 +1,10 @@
+.container {  
+    margin: auto;
+    margin-top: 5em;
+    overflow: hidden;
+    text-align: center;
+}
+
+.container p {
+    margin-top: 1em;
+}
