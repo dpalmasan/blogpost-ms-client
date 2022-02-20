@@ -1,0 +1,20 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.badge{
+    background: rgb(81, 158, 138);
+    color: #fff;
+    min-width: 50px;
+    padding-right: 20px;
+    padding-left: 20px;
+    margin: auto;
+    height: 35px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+  

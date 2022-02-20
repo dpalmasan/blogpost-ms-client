@@ -15,8 +15,9 @@ const Login = () => {
     const { state } = useLocation() as LocationState;
 
 
-    const handleLogin = async () => {
-        await login();
+    const handleLogin = async (e: any) => {
+        e.preventDefault();
+        await login(e.target.username.value, e.target.password.value);
         navigate(state?.path || "/about");
     };
 
@@ -28,10 +29,10 @@ const Login = () => {
             </div>
             <div className="login">
                 <form onSubmit={handleLogin}>
-                    <label htmlFor="uname"><b>Username</b></label>
-                    <input type="text" name="u" placeholder="Username" required />
+                    <label htmlFor="uname"><b>Email</b></label>
+                    <input type="text" name="username" placeholder="email@example.io" required />
                     <label htmlFor="psw"><b>Password</b></label>
-                    <input type="password" name="p" placeholder="Password" required />
+                    <input type="password" name="password" placeholder="Password" required />
                     <button type="submit">Let me in.</button>
                 </form>
             </div>

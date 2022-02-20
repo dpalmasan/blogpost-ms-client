@@ -13,13 +13,11 @@ export const AppRoutes = () => {
             <Routes>
                 <Route path="/home" element={<Home />} />
                 <Route path="/login" element={<Login />} />
-                <Route path="/" element={<Navigate replace to="/Home" />} />
+                <Route path="/" element={<Navigate replace to="/home" />} />
                 <Route path="/about" element={<RequireAuth>
                     <About />
                 </RequireAuth>} />
-                <Route path="/blogs" element={<RequireAuth>
-                    <Blogs />
-                </RequireAuth>} />
+                <Route path="/blogs" element={<Blogs />} />
             </Routes>
         </div>
     );

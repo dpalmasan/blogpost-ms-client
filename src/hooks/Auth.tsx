@@ -1,30 +1,38 @@
 import React from "react";
+import axios from 'axios'
 
 
 interface IAuthContext {
     authed: boolean,
-    login(): Promise<void>,
+    login(username: string, password: string): Promise<void>,
     logout(): Promise<void>,
 }
 
-
-
-const authContext = React.createContext<IAuthContext>({
-    authed: false,
-    login: (): Promise<void> => { return new Promise<void>((res) => { res() }) },
-    logout: (): Promise<void> => { return new Promise<void>((res) => { res() }) },
-
-});
+const authContext = React.createContext<IAuthContext>({} as IAuthContext);
 
 function useAuth(): IAuthContext {
     const [authed, setAuthed] = React.useState(false);
 
     return {
         authed,
-        login() {
-            return new Promise<void>((res) => {
-                setAuthed(true);
-                res();
+        login(email, password) {
+            return new Promise<void>(async (res) => {
+                try {
+                    const { data } = await axios.post("/jwt", {
+                        email,
+                        password
+                    });
+                    console.log(data);
+
+                    if (data) {
+                        setAuthed(true);
+                        res();
+                    } else {
+                        throw new Error("Invalid credentials");
+                    }
+                } catch (error) {
+                    console.error(error);
+                }
             });
         },
         logout() {
