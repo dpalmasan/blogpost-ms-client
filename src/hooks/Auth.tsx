@@ -18,7 +18,7 @@ function useAuth(): IAuthContext {
         login(email, password) {
             return new Promise<void>(async (res) => {
                 try {
-                    const { data } = await axios.post("/jwt", {
+                    const { data } = await axios.post("/login", {
                         email,
                         password
                     });

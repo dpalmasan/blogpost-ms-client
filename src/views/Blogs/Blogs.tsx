@@ -20,7 +20,7 @@ const Blogs = () => {
         <div className="container">
             <h3>Blog Posts</h3>
             {posts && posts.map(post =>
-                <BlogCard title={post.title} id={post._id} tags={post.tags} />)
+                <BlogCard key={post._id} title={post.title} id={post._id} tags={post.tags} />)
             }
         </div>
     );

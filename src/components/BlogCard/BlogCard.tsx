@@ -8,10 +8,10 @@ const BlogCard = (props: any) => {
     return (
         <div className="blog-card">
             <div className="container">
-                <h4><Link to={`/blogs/${id}`}>{title}</Link></h4>
+                <h4><Link key={id} to={`/blogs/${id}`}>{title}</Link></h4>
                 <ul>
                     {tags && tags.map((item: string) => (
-                        <li>
+                        <li key={`${id}${item}`}>
                             <BlogTag tag={item} />
                         </li>
                     ))}

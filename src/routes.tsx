@@ -5,6 +5,7 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import { RequireAuth } from './components/RequireAuth';
 import { Login } from './views/Login';
 import { Blogs } from './views/Blogs';
+import { BlogDetail } from './views/BlogDetail';
 
 export const AppRoutes = () => {
     return (
@@ -17,6 +18,7 @@ export const AppRoutes = () => {
                 <Route path="/about" element={<RequireAuth>
                     <About />
                 </RequireAuth>} />
+                <Route path="/blogs/:blogId" element={<BlogDetail />} />
                 <Route path="/blogs" element={<Blogs />} />
             </Routes>
         </div>
