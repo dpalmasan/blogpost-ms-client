@@ -1,10 +1,11 @@
 import './BlogTag.css'
 
 
-const BlogTag = () => {
+const BlogTag = (props: any) => {
+    const { tag } = props;
     return (
         <span className="badge">
-            It's very expensive
+            {tag}
         </span>
     )
 }

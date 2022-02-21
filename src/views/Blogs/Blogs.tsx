@@ -1,13 +1,29 @@
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { BlogCard } from '../../components/BlogCard';
+import { IBlogPost } from '../../types';
 import './Blogs.css';
 
+
 const Blogs = () => {
+    const [posts, setPosts] = useState([] as IBlogPost[]);
+    useEffect(() => {
+        const getPosts = async () => {
+            const result = await axios.get('/posts');
+            console.log(result)
+            setPosts(result.data.posts)
+        }
+
+        getPosts();
+    }, [])
+
+    console.log(posts);
     return (
         <div className="container">
             <h3>Blog Posts</h3>
-            <BlogCard />
-            <BlogCard />
-            <BlogCard />
+            {posts && posts.map(post =>
+                <BlogCard title={post.title} id={post._id} tags={post.tags} />)
+            }
         </div>
     );
 };
