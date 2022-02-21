@@ -10,14 +10,12 @@ const Blogs = () => {
     useEffect(() => {
         const getPosts = async () => {
             const result = await axios.get('/posts');
-            console.log(result)
             setPosts(result.data.posts)
         }
 
         getPosts();
     }, [])
 
-    console.log(posts);
     return (
         <div className="container">
             <h3>Blog Posts</h3>
