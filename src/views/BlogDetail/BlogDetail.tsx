@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { IBlogPost } from "../../types";
+import { Graphviz } from 'graphviz-react'
 
 import './BlogDetail.css'
 
@@ -19,7 +20,7 @@ const BlogDetail = () => {
 
     return (
         <div className="blog-detail">
-            <span className="heading">{blogPost.title} (<em>{blogPost.metrics?.at(1)?.name}</em>: <b>{blogPost.metrics?.at(1)?.value}</b>)</span>
+            <span className="heading">{blogPost.title} (<em>{blogPost.metrics?.at(1)?.name}</em>: <b>{blogPost.metrics?.at(1)?.value}</b>, <em>{blogPost.metrics?.at(3)?.name}</em>: <b>{Math.round(blogPost.metrics?.at(3)?.value as number * 100) / 100}</b>)</span>
             <p>{decodeURIComponent(blogPost.body as string)}</p>
             <hr className="bar-separator" />
 
@@ -35,7 +36,7 @@ const BlogDetail = () => {
                     </div>
                 </div>
                 <div className="side right">
-                    <div>{Math.round(blogPost.metrics?.at(0)?.value as number * 100) / 100}</div>
+                    <div>{Math.round(blogPost.metrics?.at(0)?.value as number * 100) / 100} / 100</div>
                 </div>
                 <div className="side">
                     <div>{blogPost.metrics?.at(2)?.name}</div>
@@ -48,10 +49,17 @@ const BlogDetail = () => {
                     </div>
                 </div>
                 <div className="side right">
-                    <div>{Math.round(blogPost.metrics?.at(2)?.value as number * 100) / 100}</div>
+                    <div>{Math.round(blogPost.metrics?.at(2)?.value as number * 100) / 100} / 5</div>
                 </div>
             </div>
             <hr className="bar-separator" />
+
+            <span className="heading">Sentence Analysis</span>
+
+            {blogPost?.sentenceTrees && blogPost.sentenceTrees.map(tree =>
+                <Graphviz dot={tree}></Graphviz>
+            )}
+
 
             <span className="heading">Metrics Explanation</span>
             <p><b>D-Estimate</b>: Measurement of Lexical Diversity cf. McKee, G., Malvern, D., & Richards, B. (2000). In a nutshell, this method

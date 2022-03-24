@@ -22,7 +22,6 @@ function useAuth(): IAuthContext {
                         email,
                         password
                     });
-                    console.log(data);
 
                     if (data) {
                         setAuthed(true);

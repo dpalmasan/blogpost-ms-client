@@ -14,6 +14,9 @@ export interface IBlogPost {
     updated_at?: Date | null,
     is_deleted: boolean,
     deleted_at?: Date | null,
-    tags?: String[] | null
-    metrics?: IMetric[] | null
+    tags?: String[] | null,
+    metrics?: IMetric[] | null,
+    sentenceTrees?: string[] | null,
+    labels?: string[] | null,
+    words?: string[] | null,
 }
