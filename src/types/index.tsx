@@ -1,7 +1,14 @@
+import { RawNodeDatum } from "react-d3-tree/lib/types/common";
+
 export interface IMetric {
     name: string,
     textId: string,
     value: number,
+}
+
+export interface ISentence {
+    tree: RawNodeDatum,
+    sentiment: string,
 }
 
 
@@ -16,7 +23,7 @@ export interface IBlogPost {
     deleted_at?: Date | null,
     tags?: String[] | null,
     metrics?: IMetric[] | null,
-    sentenceTrees?: string[] | null,
+    sentences?: ISentence[] | null,
     labels?: string[] | null,
     words?: string[] | null,
 }

@@ -2,9 +2,10 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { IBlogPost } from "../../types";
-import { Graphviz } from 'graphviz-react'
+import Tree from 'react-d3-tree';
 
 import './BlogDetail.css'
+import { RawNodeDatum } from "react-d3-tree/lib/types/common";
 
 const BlogDetail = () => {
     const params = useParams();
@@ -56,8 +57,13 @@ const BlogDetail = () => {
 
             <span className="heading">Sentence Analysis</span>
 
-            {blogPost?.sentenceTrees && blogPost.sentenceTrees.map(tree =>
-                <Graphviz dot={tree}></Graphviz>
+            {blogPost?.sentences && blogPost.sentences.map(sent =>
+                <>
+                    <p>Sentiment: {sent.sentiment}</p>
+                    <div id="treeWrapper" style={{ width: '80em', height: '40em' }}>
+                        <Tree data={sent.tree as RawNodeDatum} orientation="vertical" />
+                    </div>
+                </>
             )}
 
 
